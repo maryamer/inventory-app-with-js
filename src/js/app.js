@@ -8,6 +8,10 @@
 // productview class
 // categoryview class
 //  main and app class
+import CategoryView from "./CategoryView.js";
 import Storage from "./Storage.js";
+document.addEventListener("DOMContentLoaded", () => {
+  CategoryView.setCategory();
+  CategoryView.createCategoriesList();
+});
 class App {}
-Storage.saveCategory({ title: "js", description: "hello worrld" });
