@@ -87,7 +87,7 @@ export default class Storage {
       productToSave.createdAt = new Date().toISOString();
       savedProducts.push(productToSave);
     }
-    console.log(savedProducts);
+
     localStorage.setItem("products", JSON.stringify(savedProducts));
   }
 }
