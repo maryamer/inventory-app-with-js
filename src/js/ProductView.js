@@ -1,12 +1,13 @@
 import Storage from "./Storage.js";
 
 const addNewProductBtn = document.getElementById("add-new-product");
-// const searchInput = document.querySelector("#search-input");
+const searchInput = document.querySelector("#search-input");
 // const selectedSort = document.querySelector("#sort-products");
 
 class ProductView {
   constructor() {
     addNewProductBtn.addEventListener("click", (e) => this.addNewProduct(e));
+    searchInput.addEventListener("input", (e) => this.searchProducts(e));
     this.products = [];
   }
   addNewProduct(e) {
@@ -18,14 +19,15 @@ class ProductView {
     if (!title || !quantity || !category) return;
     Storage.saveProducts({ title, quantity, category });
     this.products = Storage.getAllProducts();
+    this.createProductList(this.products);
   }
   setProducts() {
     this.products = Storage.getAllProducts();
   }
-  createProductList() {
+  createProductList(products) {
     // const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
     let result = "";
-    this.products.forEach((item) => {
+    products.forEach((item) => {
       const selectedCategory = Storage.getAllCategories().find(
         (c) => c.id == item.category
       );
@@ -56,6 +58,15 @@ class ProductView {
     // deleteBtns.forEach((item) => {
     //   item.addEventListener("click", (e) => this.deleteProduct(e));
     // });
+  }
+  searchProducts(e) {
+    const value = e.target.value.trim().toLowerCase();
+    const filteredProducts = this.products.filter((p) =>
+      p.title.toLowerCase().includes(value)
+    );
+
+    this.createProductList(filteredProducts);
+    // Storage
   }
 }
 
