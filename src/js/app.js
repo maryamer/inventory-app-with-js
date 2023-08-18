@@ -9,9 +9,12 @@
 // categoryview class
 //  main and app class
 import CategoryView from "./CategoryView.js";
+import ProductView from "./ProductView.js";
 import Storage from "./Storage.js";
 document.addEventListener("DOMContentLoaded", () => {
   CategoryView.setCategory();
+  ProductView.setProducts();
   CategoryView.createCategoriesList();
+  ProductView.createProductList();
 });
 class App {}

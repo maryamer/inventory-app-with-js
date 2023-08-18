@@ -38,7 +38,6 @@ export default class Storage {
   // add-save-edit-get category
   static getAllCategories() {
     const savedCategories = JSON.parse(localStorage.getItem("category")) || [];
-    console.log(savedCategories);
     const sortedCategories = savedCategories.sort((a, b) => {
       return new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1;
     });
@@ -84,6 +83,7 @@ export default class Storage {
       productToSave.createdAt = new Date().toISOString();
       savedProducts.push(productToSave);
     }
+    console.log(savedProducts);
     localStorage.setItem("products", JSON.stringify(savedProducts));
   }
 }
