@@ -55,10 +55,10 @@ class ProductView {
     const productsDOM = document.getElementById("products-list");
     productsDOM.innerHTML = result;
 
-    // const deleteBtns = [...document.querySelectorAll(".delete-product")];
-    // deleteBtns.forEach((item) => {
-    //   item.addEventListener("click", (e) => this.deleteProduct(e));
-    // });
+    const deleteBtns = [...document.querySelectorAll(".delete-product")];
+    deleteBtns.forEach((item) => {
+      item.addEventListener("click", (e) => this.deleteProduct(e));
+    });
   }
   searchProducts(e) {
     const value = e.target.value.trim().toLowerCase();
@@ -73,6 +73,13 @@ class ProductView {
     const value = e.target.value;
     this.products = Storage.getAllProducts(value);
     this.createProductList(this.products);
+  }
+  deleteProduct(e) {
+    const id = e.target.dataset.productId;
+    const filteredProducts = this.products.filter((item) => item.id != id);
+    this.createProductList(filteredProducts);
+    this.products = filteredProducts;
+    Storage.deleteProduct(filteredProducts);
   }
 }
 

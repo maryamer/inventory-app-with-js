@@ -90,4 +90,8 @@ export default class Storage {
 
     localStorage.setItem("products", JSON.stringify(savedProducts));
   }
+  static deleteProduct(filteredProducts) {
+    localStorage.setItem("products", JSON.stringify(filteredProducts));
+    console.log(filteredProducts);
+  }
 }
